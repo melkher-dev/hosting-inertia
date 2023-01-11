@@ -29,6 +29,11 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+// chisto potestit' dobavil
+Route::get('/servers', function () {
+    return Inertia::render('servers');
+})->middleware(['auth', 'verified'])->name('servers');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
