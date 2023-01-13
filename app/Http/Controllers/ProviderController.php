@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Provider;
 use Illuminate\Http\Request;
+use App\Http\Requests\ProviderTokenRequest;
 
 class ProviderController extends Controller
 {
@@ -13,7 +15,9 @@ class ProviderController extends Controller
      */
     public function index()
     {
-        //
+        return inertia('Providers/Providers', [
+            'providers' => Provider::all(),
+        ]);
     }
 
     /**
@@ -26,15 +30,15 @@ class ProviderController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(ProviderTokenRequest $request)
     {
-        //
+        $user = $request->user();
+
+        $provider = Provider::where('name', $request->input('providerName'))->first();
+
+        $user->providers()->attach($provider->id, ['token' => $request->input('token')]);
+
+        return back();
     }
 
     /**

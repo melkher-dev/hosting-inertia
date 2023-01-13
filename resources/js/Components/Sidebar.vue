@@ -15,52 +15,26 @@
           text-decoration-none
         "
       >
-        <svg class="bi me-2" width="40" height="32">
+        <svg class="bi me-2" width="40" height="50">
           <use xlink:href="#bootstrap"></use>
         </svg>
-        <span class="fs-4">Sidebar</span>
+        <span class="fs-4">Hosting</span>
       </Link>
-      <hr />
       <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
-          <Link href="#" class="nav-link active" aria-current="page">
-            <svg class="bi me-2" width="16" height="16">
-              <use xlink:href="#home"></use>
-            </svg>
-            Home
-          </Link>
+          <Link :href="route('providers')" class="nav-link link-dark"> Providers </Link>
         </li>
         <li>
-          <Link href="#" class="nav-link link-dark">
-            <svg class="bi me-2" width="16" height="16">
-              <use xlink:href="#speedometer2"></use>
-            </svg>
-            Dashboard
-          </Link>
+          <Link href="#" class="nav-link link-dark"> Dashboard </Link>
         </li>
         <li>
-          <Link href="#" class="nav-link link-dark">
-            <svg class="bi me-2" width="16" height="16">
-              <use xlink:href="#table"></use>
-            </svg>
-            Orders
-          </Link>
+          <Link href="#" class="nav-link link-dark"> Orders </Link>
         </li>
         <li>
-          <Link href="#" class="nav-link link-dark">
-            <svg class="bi me-2" width="16" height="16">
-              <use xlink:href="#grid"></use>
-            </svg>
-            Products
-          </Link>
+          <Link href="#" class="nav-link link-dark"> Products </Link>
         </li>
         <li>
-          <Link href="#" class="nav-link link-dark">
-            <svg class="bi me-2" width="16" height="16">
-              <use xlink:href="#people-circle"></use>
-            </svg>
-            Customers
-          </Link>
+          <Link href="#" class="nav-link link-dark"> Customers </Link>
         </li>
       </ul>
     </div>
