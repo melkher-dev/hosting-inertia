@@ -12,7 +12,7 @@
 
         <template v-else>
           <button class="btn btn-danger btn-sm float-right m-2">Delete key</button>
-          <button class="btn btn-dark btn-sm float-right m-2">Update key</button>
+          <button @click="updateKey" class="btn btn-dark btn-sm float-right m-2">Update key</button>
         </template>
       </div>
     </div>
@@ -31,14 +31,23 @@ const props = defineProps({
 let keyEdit = ref(false);
 
 const updateKeyForm = useForm({
+  id: null,
   name: null,
   key: null
 })
 
 onMounted(() => {
   if (props.sshKey) {
-    updateKeyForm.name = props.sshKey.name,
-      updateKeyForm.key = props.sshKey.key
+    updateKeyForm.id = props.sshKey.id
+    updateKeyForm.name = props.sshKey.name
+    updateKeyForm.key = props.sshKey.key
   }
 })
+
+const updateKey = () => {
+  updateKeyForm.put(route('ssh.key.update'), {
+    preserveScroll: true
+  });
+  keyEdit.value = false
+}
 </script>
