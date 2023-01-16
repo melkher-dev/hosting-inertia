@@ -1,38 +1,44 @@
 <template>
-  <div class="m-2">
-    <button class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
-      Launch demo modal
-    </button>
-  </div>
-  <div class="card" style="width: 50rem;">
-    <div class="card-body">
-      <h5 class="card-title">SSH keys</h5>
-      <input class="form-control m-2" type="text">
-      <input class="form-control m-2" type="text">
-      <button class="btn btn-dark btn-sm float-right m-2">Go somewhere</button>
-    </div>
-  </div>
+  <div>
+    <div class="card" style="width: 50rem;">
+      <div class="card-body">
+        <h5 class="card-title">SSH key</h5>
+        <input v-model="updateKeyForm.name" class="form-control m-2" type="text" :disabled="!keyEdit">
+        <input v-model="updateKeyForm.key" class="form-control m-2" type="text" :disabled="!keyEdit">
 
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
+        <template v-if="!keyEdit">
+          <button @click="keyEdit = true" class="btn btn-dark btn-sm float-right m-2">Edit key</button>
+        </template>
+
+        <template v-else>
+          <button class="btn btn-danger btn-sm float-right m-2">Delete key</button>
+          <button class="btn btn-dark btn-sm float-right m-2">Update key</button>
+        </template>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
+import { useForm } from '@inertiajs/inertia-vue3';
+import { ref } from '@vue/reactivity';
+import { onMounted } from '@vue/runtime-core';
 
+const props = defineProps({
+  sshKey: Object | null
+})
+
+let keyEdit = ref(false);
+
+const updateKeyForm = useForm({
+  name: null,
+  key: null
+})
+
+onMounted(() => {
+  if (props.sshKey) {
+    updateKeyForm.name = props.sshKey.name,
+      updateKeyForm.key = props.sshKey.key
+  }
+})
 </script>

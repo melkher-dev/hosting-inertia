@@ -15,7 +15,9 @@ class SshKeyController extends Controller
      */
     public function index()
     {
-        return inertia('SshKeys/SshKeys');
+        return inertia('SshKeys/SshKeys', [
+            'sshKeys' => auth()->user()->sshKeys
+        ]);
     }
 
     /**

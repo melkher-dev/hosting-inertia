@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\SshKey;
 use App\Models\Provider;
 use App\Models\ProviderUser;
 use Laravel\Sanctum\HasApiTokens;
@@ -52,5 +53,10 @@ class User extends Authenticatable
     public function providers()
     {
         return $this->belongsToMany(Provider::class)->using(ProviderUser::class)->withPivot('token', 'secret_token')->withTimestamps();
+    }
+
+    public function sshKeys()
+    {
+        return $this->hasMany(SshKey::class);
     }
 }

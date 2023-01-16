@@ -48,12 +48,11 @@
 import { useForm } from "@inertiajs/inertia-vue3";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import DangerButton from "@/Components/DangerButton.vue";
-import { onMounted, ref } from "@vue/runtime-core";
+import { onMounted } from "@vue/runtime-core";
 import { Inertia } from "@inertiajs/inertia";
+import { ref } from '@vue/reactivity';
 
 const props = defineProps({
-  description: String,
-
   provider: Object,
   userProvider: Object | null
 });
