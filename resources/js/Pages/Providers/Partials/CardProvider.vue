@@ -19,14 +19,14 @@
                 Delete token
               </DangerButton>
 
-              <PrimaryButton class="float-right mt-2" v-if="userProvider && !tokenEdit"
-                :class="{ 'opacity-25': form.processing }" :disabled="form.processing || (userProvider && !tokenEdit)"
+              <PrimaryButton type="button" class="float-right mt-2" v-if="userProvider && !tokenEdit"
+                :class="{ 'opacity-25': form.processing }"
                 @click="tokenEdit = true">
                 Edit Token
               </PrimaryButton>
 
-              <PrimaryButton v-if="tokenEdit" class="float-right mt-2" :class="{ 'opacity-25': form.processing }"
-                :disabled="form.processing || (userProvider && !tokenEdit)">
+              <PrimaryButton @click="updateToken" v-if="tokenEdit" class="float-right mt-2"
+                :class="{ 'opacity-25': form.processing }" :disabled="form.processing || (userProvider && !tokenEdit)">
                 Update token
               </PrimaryButton>
             </template>
@@ -63,7 +63,7 @@ const form = useForm({
   token: null,
 });
 
-const tokenEdit = ref(false);
+let tokenEdit = ref(false);
 
 onMounted(() => {
   if (props.userProvider) {
@@ -86,5 +86,11 @@ const deleteToken = () => {
     preserveScroll: true
   });
 };
+
+const updateToken = () => {
+  form.put(route("provider.token.update"), {
+    preserveScroll: true
+  });
+}
 
 </script>

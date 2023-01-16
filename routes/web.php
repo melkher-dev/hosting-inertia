@@ -38,6 +38,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/providers', [ProviderController::class, 'index'])->name('providers');
     Route::post('/tokens', [ProviderController::class, 'store'])->name('provider.token.store');
     Route::delete('/token', [ProviderController::class, 'deleteToken'])->name('provider.token.delete');
+    Route::put('/token-update', [ProviderController::class, 'updateToken'])->name('provider.token.update');
 });
 
 require __DIR__ . '/auth.php';
