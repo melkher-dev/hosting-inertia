@@ -17,6 +17,7 @@ class ProviderController extends Controller
     {
         return inertia('Providers/Providers', [
             'providers' => Provider::all(),
+            'userProviders' => auth()->user()->providers
         ]);
     }
 
@@ -30,6 +31,13 @@ class ProviderController extends Controller
         //
     }
 
+    /**
+     * Method store
+     *
+     * @param ProviderTokenRequest
+     *
+     * @return void
+     */
     public function store(ProviderTokenRequest $request)
     {
         $user = $request->user();
@@ -84,5 +92,21 @@ class ProviderController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Method deleteToken
+     *
+     * @param Request $request
+     *
+     * @return void
+     */
+    public function deleteToken(Request $request)
+    {
+        $user = $request->user();
+
+        $provider = Provider::whereName($request->input('providerName'))->first();
+
+        $user->providers()->detach($provider);
     }
 }
