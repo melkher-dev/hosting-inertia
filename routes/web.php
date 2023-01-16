@@ -3,6 +3,7 @@
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
+use App\Http\Controllers\SshKeyController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProviderController;
 
@@ -39,6 +40,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/tokens', [ProviderController::class, 'store'])->name('provider.token.store');
     Route::delete('/token', [ProviderController::class, 'deleteToken'])->name('provider.token.delete');
     Route::put('/token-update', [ProviderController::class, 'updateToken'])->name('provider.token.update');
+
+    Route::get('/ssh-keys', [SshKeyController::class, 'index'])->name('ssh-keys');
+    Route::post('/ssh-key-store', [SshKeyController::class, 'store'])->name('ssh.key.store');
 });
 
 require __DIR__ . '/auth.php';

@@ -8,34 +8,34 @@
               {{ provider.name }}
             </h5>
             <p class="card-text">
-              Enter your token
+              Token
             </p>
             <input id="name" class="form-control m-2" type="text" placeholder="Token" v-model="form.token"
               :disabled="userProvider && !tokenEdit" />
 
 
             <template v-if="userProvider">
-              <DangerButton @click="deleteToken" class="float-right mt-2" :class="{ 'opacity-25': form.processing }">
+              <button @click="deleteToken" class="btn btn-danger btn-sm float-right m-2"
+                :class="{ 'opacity-25': form.processing }">
                 Delete token
-              </DangerButton>
+              </button>
 
-              <PrimaryButton type="button" class="float-right mt-2" v-if="userProvider && !tokenEdit"
-                :class="{ 'opacity-25': form.processing }"
-                @click="tokenEdit = true">
+              <button class="btn btn-dark btn-sm float-right m-2" v-if="userProvider && !tokenEdit"
+                :class="{ 'opacity-25': form.processing }" @click="tokenEdit = true">
                 Edit Token
-              </PrimaryButton>
+              </button>
 
-              <PrimaryButton @click="updateToken" v-if="tokenEdit" class="float-right mt-2"
+              <button @click="updateToken" v-if="tokenEdit" class="btn btn-dark btn-sm float-right m-2"
                 :class="{ 'opacity-25': form.processing }" :disabled="form.processing || (userProvider && !tokenEdit)">
                 Update token
-              </PrimaryButton>
+              </button>
             </template>
 
             <template v-else>
-              <PrimaryButton @click="saveToken" class="float-right mt-2" :class="{ 'opacity-25': form.processing }"
-                :disabled="form.processing">
+              <button @click="saveToken" class="btn btn-dark btn-sm float-right m-2"
+                :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                 Save token
-              </PrimaryButton>
+              </button>
             </template>
           </div>
         </div>
@@ -91,6 +91,7 @@ const updateToken = () => {
   form.put(route("provider.token.update"), {
     preserveScroll: true
   });
+  tokenEdit.value = false
 }
 
 </script>

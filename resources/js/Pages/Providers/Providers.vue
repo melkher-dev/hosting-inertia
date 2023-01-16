@@ -1,21 +1,14 @@
 <template>
     <AuthenticatedLayout>
-        <div
-            class="float-right m-2"
-            v-for="provider in providers"
-            :key="provider.id"
-        >
-            <CardProvider
-                :provider="provider"
-                :userProvider="getUserProvider(provider)"
-            />
+        <div class="float-right m-2" v-for="provider in providers" :key="provider.id">
+            <ProviderCard :provider="provider" :userProvider="getUserProvider(provider)" />
         </div>
     </AuthenticatedLayout>
 </template>
 
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import CardProvider from "@/Pages/Providers/Partials/CardProvider.vue";
+import ProviderCard from "@/Pages/Providers/Partials/ProviderCard.vue";
 
 const props = defineProps({
     providers: Object,
