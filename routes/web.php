@@ -44,6 +44,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/ssh-keys', [SshKeyController::class, 'index'])->name('ssh-keys');
     Route::post('/ssh-key-store', [SshKeyController::class, 'store'])->name('ssh.key.store');
     Route::put('/ssh-key-update', [SshKeyController::class, 'update'])->name('ssh.key.update');
+    Route::delete('/ssh-key-delete', [SshKeyController::class, 'deleteKey'])->name('ssh.key.delete');
 });
 
 require __DIR__ . '/auth.php';

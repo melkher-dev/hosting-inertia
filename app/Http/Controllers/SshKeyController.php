@@ -75,14 +75,10 @@ class SshKeyController extends Controller
         $sshKey->save();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function deleteKey(Request $request)
     {
-        //
+        $sshKey = SshKey::find($request->id);
+
+        $sshKey->delete();
     }
 }

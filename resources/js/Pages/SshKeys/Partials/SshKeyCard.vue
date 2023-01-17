@@ -5,13 +5,13 @@
         <h5 class="card-title">SSH key</h5>
         <input v-model="updateKeyForm.name" class="form-control m-2" type="text" :disabled="!keyEdit">
         <input v-model="updateKeyForm.key" class="form-control m-2" type="text" :disabled="!keyEdit">
+        <button @click="deleteKey" class="btn btn-danger btn-sm float-right m-2">Delete key</button>
 
         <template v-if="!keyEdit">
           <button @click="keyEdit = true" class="btn btn-dark btn-sm float-right m-2">Edit key</button>
         </template>
 
         <template v-else>
-          <button class="btn btn-danger btn-sm float-right m-2">Delete key</button>
           <button @click="updateKey" class="btn btn-dark btn-sm float-right m-2">Update key</button>
         </template>
       </div>
@@ -49,5 +49,11 @@ const updateKey = () => {
     preserveScroll: true
   });
   keyEdit.value = false
+}
+
+const deleteKey = () => {
+  updateKeyForm.delete(route('ssh.key.delete'), {
+    preserveScroll: true
+  })
 }
 </script>
