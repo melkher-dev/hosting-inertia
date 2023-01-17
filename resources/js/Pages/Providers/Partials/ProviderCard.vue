@@ -5,7 +5,7 @@
         <div class="card" style="width: 50rem">
           <div class="card-body">
             <h5 class="card-title">
-              {{ provider.name }}
+              {{ provider.name.charAt(0).toUpperCase() + provider.name.slice(1) }} provider
             </h5>
             <p class="card-text">
               Token
