@@ -11,7 +11,7 @@ class DigitalOceanController extends Controller
     {
         $client = new Client();
 
-        $client->authenticate('dop_v1_0a4571b42f2d441eefaeffade41580cd24a145119da896260f8ad91b12db5927');
+        $client->authenticate(config('token.digital_token'));
 
         // return the size api
         $size = $client->size();
