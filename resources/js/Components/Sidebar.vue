@@ -41,3 +41,9 @@
 <script setup>
 import { Link } from "@inertiajs/inertia-vue3";
 </script>
+
+<style>
+.active {
+  background-color: rgb(235, 230, 230) !important;
+}
+</style>
