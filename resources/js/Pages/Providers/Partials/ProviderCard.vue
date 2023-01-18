@@ -1,47 +1,43 @@
 <template>
-  <div>
-    <div>
-      <form>
-        <div class="card" style="width: 50rem">
-          <div class="card-body">
-            <h5 class="card-title">
-              {{ provider.name.charAt(0).toUpperCase() + provider.name.slice(1) }} provider
-            </h5>
-            <p class="card-text">
-              Token
-            </p>
-            <input id="name" class="form-control m-2" type="text" placeholder="Token" v-model="form.token"
-              :disabled="userProvider && !tokenEdit" />
+  <form>
+    <div class="card" style="width: 50rem">
+      <div class="card-body">
+        <h5 class="card-title">
+          {{ provider.name.charAt(0).toUpperCase() + provider.name.slice(1) }} provider
+        </h5>
+        <p class="card-text">
+          Token
+        </p>
+        <input id="name" class="form-control m-2" type="text" placeholder="Token" v-model="form.token"
+          :disabled="userProvider && !tokenEdit" />
 
 
-            <template v-if="userProvider">
-              <button @click="deleteToken" class="btn btn-danger btn-sm float-right m-2"
-                :class="{ 'opacity-25': form.processing }">
-                Delete token
-              </button>
+        <template v-if="userProvider">
+          <button @click="deleteToken" class="btn btn-danger btn-sm float-right m-2"
+            :class="{ 'opacity-25': form.processing }">
+            Delete token
+          </button>
 
-              <button class="btn btn-dark btn-sm float-right m-2" v-if="userProvider && !tokenEdit"
-                :class="{ 'opacity-25': form.processing }" @click="tokenEdit = true">
-                Edit Token
-              </button>
+          <button class="btn btn-dark btn-sm float-right m-2" v-if="userProvider && !tokenEdit"
+            :class="{ 'opacity-25': form.processing }" @click="tokenEdit = true">
+            Edit Token
+          </button>
 
-              <button @click="updateToken" v-if="tokenEdit" class="btn btn-dark btn-sm float-right m-2"
-                :class="{ 'opacity-25': form.processing }" :disabled="form.processing || (userProvider && !tokenEdit)">
-                Update token
-              </button>
-            </template>
+          <button @click="updateToken" v-if="tokenEdit" class="btn btn-dark btn-sm float-right m-2"
+            :class="{ 'opacity-25': form.processing }" :disabled="form.processing || (userProvider && !tokenEdit)">
+            Update token
+          </button>
+        </template>
 
-            <template v-else>
-              <button @click="saveToken" class="btn btn-dark btn-sm float-right m-2"
-                :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                Save token
-              </button>
-            </template>
-          </div>
-        </div>
-      </form>
+        <template v-else>
+          <button @click="saveToken" class="btn btn-dark btn-sm float-right m-2"
+            :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+            Save token
+          </button>
+        </template>
+      </div>
     </div>
-  </div>
+  </form>
 </template>
 
 <script setup>

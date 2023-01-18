@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="d-flex flex-column flex-shrink-0 p-3 bg-white" style="width: 280px">
+  <div class="bg-white">
+    <div class="d-flex flex-column flex-shrink-0 p-3 bg-white">
       <Link href="/" class="
           d-flex
           align-items-center
@@ -16,13 +16,16 @@
       </Link>
       <ul class="nav nav-pills flex-column mb-auto">
         <li>
-          <Link :href="route('dashboard')" class="nav-link link-dark" :class="{ 'active': $page.url === '/dashboard' }"> Dashboard </Link>
+          <Link :href="route('servers')" class="nav-link link-dark" :class="{ 'active': $page.url === '/servers' }">
+          Servers </Link>
         </li>
         <li class="nav-item">
-          <Link :href="route('providers')" class="nav-link link-dark" :class="{ 'active': $page.url === '/providers' }"> Providers </Link>
+          <Link :href="route('providers')" class="nav-link link-dark" :class="{ 'active': $page.url === '/providers' }">
+          Providers </Link>
         </li>
         <li>
-          <Link :href="route('ssh-keys')" class="nav-link link-dark" :class="{ 'active': $page.url === '/ssh-keys' }"> SSH keys </Link>
+          <Link :href="route('ssh-keys')" class="nav-link link-dark" :class="{ 'active': $page.url === '/ssh-keys' }">
+          SSH keys </Link>
         </li>
         <li>
           <Link href="#" class="nav-link link-dark"> shoto 1 </Link>

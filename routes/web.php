@@ -6,6 +6,7 @@ use Illuminate\Foundation\Application;
 use App\Http\Controllers\SshKeyController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProviderController;
+use App\Http\Controllers\DigitalOceanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +46,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/ssh-key-store', [SshKeyController::class, 'store'])->name('ssh.key.store');
     Route::put('/ssh-key-update', [SshKeyController::class, 'update'])->name('ssh.key.update');
     Route::delete('/ssh-key-delete', [SshKeyController::class, 'deleteKey'])->name('ssh.key.delete');
+
+    Route::get('/servers', [DigitalOceanController::class, 'index'])->name('servers');
 });
 
 require __DIR__ . '/auth.php';
